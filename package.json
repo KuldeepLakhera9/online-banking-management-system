@@ -1,17 +1,24 @@
 {
   "name": "online-banking-management-system",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Online Banking Management System using Node.js, Express, EJS, and MongoDB",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/KuldeepLakhera9/online-banking-management-system.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "banking",
+    "nodejs",
+    "express",
+    "mongodb",
+    "ejs"
+  ],
+  "author": "Kuldeep Lakhera",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
