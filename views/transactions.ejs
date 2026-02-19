@@ -1,20 +1,28 @@
-<h2>Transaction History</h2>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Transactions</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
 
-<table border="1" cellpadding="10">
-  <tr>
-    <th>Type</th>
-    <th>Amount</th>
-    <th>Date</th>
-  </tr>
+<div class="container">
+  <h2>Transaction History</h2>
+
+  <% if (transactions.length === 0) { %>
+    <p>No transactions found</p>
+  <% } %>
 
   <% transactions.forEach(txn => { %>
-    <tr>
-      <td><%= txn.type %></td>
-      <td>₹ <%= txn.amount %></td>
-      <td><%= txn.date.toLocaleString() %></td>
-    </tr>
+    <p>
+      <strong><%= txn.type %></strong> - ₹<%= txn.amount %><br>
+      <small><%= txn.date.toLocaleString() %></small>
+    </p>
+    <hr>
   <% }) %>
-</table>
 
-<br>
-<a href="/dashboard">Back to Dashboard</a>
+  <a href="/dashboard">Back to Dashboard</a>
+</div>
+
+</body>
+</html>

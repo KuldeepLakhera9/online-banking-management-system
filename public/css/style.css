@@ -1,10 +1,126 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f6f8;
-  text-align: center;
-  padding-top: 100px;
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-h1 {
-  color: #2c3e50;
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(120deg, #1e3c72, #2a5298);
+  min-height: 100vh;
+}
+
+.container {
+  width: 420px;
+  margin: 80px auto;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #1e3c72;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: #1e3c72;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+button:hover {
+  background: #16325c;
+}
+
+a {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  text-decoration: none;
+  color: #1e3c72;
+  font-weight: 500;
+}
+
+.error {
+  background: #ffe0e0;
+  color: #b30000;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.success {
+  background: #e0ffe5;
+  color: #006b2e;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.nav {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.nav a {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+/* ================= ADMIN TABLE FIX ================= */
+
+.admin-container {
+  width: 90%;
+  max-width: 900px;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 12px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.admin-table th {
+  background-color: #1e3c72;
+  color: white;
+}
+
+.admin-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.admin-table td {
+  word-break: break-word;
+}
+
+.admin-table button {
+  width: auto;
+  padding: 6px 14px;
+  font-size: 13px;
 }

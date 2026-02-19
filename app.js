@@ -7,6 +7,7 @@ const User = require("./models/User");
 const session = require("express-session");
 const authRoutes = require("./routes/auth");
 const bankRoutes = require("./routes/bank");
+const adminRoutes = require("./routes/admin");
 
 // ================= MIDDLEWARE FIRST =================
 
@@ -33,6 +34,7 @@ app.use(express.static("public"));
 // Auth routes
 app.use(authRoutes);
 app.use(bankRoutes);
+app.use(adminRoutes);
 
 // Home route
 app.get("/", (req, res) => {
@@ -57,7 +59,11 @@ function isLoggedIn(req, res, next) {
 
 app.get("/dashboard", isLoggedIn, async (req, res) => {
   const user = await User.findById(req.session.userId);
-  res.render("dashboard", { user });
+
+  res.render("dashboard", {
+    user,
+    success: req.query.success,
+  });
 });
 
 // ================= SERVER =================

@@ -15,15 +15,15 @@ function isLoggedIn(req, res, next) {
 
 // Deposit page
 router.get("/deposit", isLoggedIn, (req, res) => {
-  res.render("deposit");
+  res.render("deposit", { error: req.query.error });
 });
 
 // Deposit logic
 router.post("/deposit", isLoggedIn, async (req, res) => {
   const { amount } = req.body;
 
-  if (amount <= 0) {
-    return res.send("Invalid deposit amount");
+  if (!amount || amount <= 0) {
+    return res.redirect("/deposit?error=Enter valid amount");
   }
 
   const user = await User.findById(req.session.userId);
@@ -36,27 +36,26 @@ router.post("/deposit", isLoggedIn, async (req, res) => {
     amount: Number(amount),
   });
 
-  res.redirect("/dashboard");
+  res.redirect("/dashboard?success=Deposit successful");
 });
 
 // ------------------ WITHDRAW ------------------
 
 // Withdraw page
 router.get("/withdraw", isLoggedIn, (req, res) => {
-  res.render("withdraw");
+  res.render("withdraw", { error: req.query.error });
 });
-
 // Withdraw logic
 router.post("/withdraw", isLoggedIn, async (req, res) => {
   const { amount } = req.body;
   const user = await User.findById(req.session.userId);
 
-  if (amount <= 0) {
-    return res.send("Invalid withdrawal amount");
+  if (!amount || amount <= 0) {
+    return res.redirect("/withdraw?error=Enter valid amount");
   }
 
   if (amount > user.balance) {
-    return res.send("Insufficient balance");
+    return res.redirect("/withdraw?error=Insufficient balance");
   }
 
   user.balance -= Number(amount);
@@ -68,7 +67,7 @@ router.post("/withdraw", isLoggedIn, async (req, res) => {
     amount: Number(amount),
   });
 
-  res.redirect("/dashboard");
+  res.redirect("/dashboard?success=Withdrawal successful");
 });
 
 router.get("/transactions", isLoggedIn, async (req, res) => {

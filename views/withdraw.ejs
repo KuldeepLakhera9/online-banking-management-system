@@ -1,8 +1,25 @@
-<h2>Withdraw Money</h2>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Withdraw</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
 
-<form action="/withdraw" method="POST">
-  <input type="number" name="amount" placeholder="Enter amount" required />
-  <button type="submit">Withdraw</button>
-</form>
+<div class="container">
+  <h2>Withdraw Money</h2>
 
-<a href="/dashboard">Back to Dashboard</a>
+  <% if (error) { %>
+    <div class="error"><%= error %></div>
+  <% } %>
+
+  <form action="/withdraw" method="POST">
+    <input type="number" name="amount" placeholder="Enter amount" required>
+    <button type="submit">Withdraw</button>
+  </form>
+
+  <a href="/dashboard">Back to Dashboard</a>
+</div>
+
+</body>
+</html>
