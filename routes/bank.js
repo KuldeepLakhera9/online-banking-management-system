@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
+const Transaction = require("../models/Transaction");
 
 // AUTH MIDDLEWARE (route-level protection)
 function isLoggedIn(req, res, next) {
@@ -27,8 +28,14 @@ router.post("/deposit", isLoggedIn, async (req, res) => {
 
   const user = await User.findById(req.session.userId);
   user.balance += Number(amount);
-
   await user.save();
+
+  await Transaction.create({
+    userId: user._id,
+    type: "DEPOSIT",
+    amount: Number(amount),
+  });
+
   res.redirect("/dashboard");
 });
 
@@ -55,7 +62,21 @@ router.post("/withdraw", isLoggedIn, async (req, res) => {
   user.balance -= Number(amount);
   await user.save();
 
+  await Transaction.create({
+    userId: user._id,
+    type: "WITHDRAW",
+    amount: Number(amount),
+  });
+
   res.redirect("/dashboard");
+});
+
+router.get("/transactions", isLoggedIn, async (req, res) => {
+  const transactions = await Transaction.find({
+    userId: req.session.userId,
+  }).sort({ date: -1 });
+
+  res.render("transactions", { transactions });
 });
 
 module.exports = router;

@@ -1,0 +1,20 @@
+<h2>Transaction History</h2>
+
+<table border="1" cellpadding="10">
+  <tr>
+    <th>Type</th>
+    <th>Amount</th>
+    <th>Date</th>
+  </tr>
+
+  <% transactions.forEach(txn => { %>
+    <tr>
+      <td><%= txn.type %></td>
+      <td>₹ <%= txn.amount %></td>
+      <td><%= txn.date.toLocaleString() %></td>
+    </tr>
+  <% }) %>
+</table>
+
+<br>
+<a href="/dashboard">Back to Dashboard</a>
